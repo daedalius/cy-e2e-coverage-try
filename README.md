@@ -1,22 +1,47 @@
-# Just another seed for mine and your React projects 🤗
+# e2e code-coverage
 
-## What is in the box? 📦
+The application code is "instrumented" via istanbul if `NODE_ENV=test`. As a result, a `__coverage__` object appears in `window` after execution (during the test).
+After completing tests, it remains to read this variable and generate a report. Cypress does this after a simple setup (see last commits).
+If you run all tests (components, e2e) via Cypress, reports merges automatically.
 
-- Not a Solid🐍 or a 💎🐕
-- React
-- Typescript
-- Webpack 4 (not 5 because of Storybook)
-- Storybook
-- Cypress
-- Jest
-- React Testing Library
+# How to see the e2e test-coverage
 
-✅ Storybook and Cypress runs on the Webpack config provided.
+Start instrumented front-end version:
 
-## Misc and tweaks
+```
+npm run start:instrumented
+```
 
-- Some image loading
-- Some Prettier config
-- Some Storybook helper functions to easily describe Stories in CSF-format
-- Changed Storybook Docs global render (you may remove "docs" section from "parameters" in ./storybook/preview.js file)
-- Two tsconfigs to avoid [Cypress/Jest typings collision](https://github.com/cypress-io/cypress-and-jest-typescript-example)
+Run e2e tests:
+
+```
+npm run test:e2e:ci
+```
+
+See ./coverage/lcov-report/index.html generated
+
+# How to see the components test-coverage
+
+Run component tests:
+
+```
+npm run test:components:ci
+```
+
+See ./coverage/lcov-report/index.html generated
+
+# How to see e2e + components test-coverage
+
+Start instrumented front-end version:
+
+```
+npm run start:instrumented
+```
+
+Run all tests:
+
+```
+npm run test:all
+```
+
+See ./coverage/lcov-report/index.html generated

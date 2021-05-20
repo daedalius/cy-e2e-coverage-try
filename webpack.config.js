@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/main.tsx',
   output: {
-    path: resolve('./dist/app')
+    path: resolve('./dist/app'),
   },
   module: {
     rules: [
@@ -27,6 +27,18 @@ module.exports = {
             '@babel/preset-typescript',
           ],
           plugins: ['@babel/proposal-class-properties', '@babel/proposal-object-rest-spread'],
+          env: {
+            test: {
+              plugins: [
+                [
+                  'istanbul',
+                  {
+                    exclude: ['**/*e2e*'],
+                  },
+                ],
+              ],
+            },
+          },
         },
       },
       {
@@ -40,7 +52,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name]-[hash].[ext]',
-              outputPath: 'images'
+              outputPath: 'images',
             },
           },
         ],
